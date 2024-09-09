@@ -1,0 +1,84 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:model="clr-namespace:Tasker099.Model"
+             xmlns:viewmodel="clr-namespace:Tasker099.ViewModel"
+             x:DataType="viewmodel:TaskersViewModel"
+             Title="{Binding Title}"
+             x:Class="Tasker099.MainPage">
+
+    <Grid RowDefinitions="Auto, *, Auto"
+          Padding="10"
+          ColumnSpacing="10">
+
+        <ImageButton Source="new_frame.png"
+                     Margin="5"
+                     Command="{Binding AddTaskerCommand}"
+                     BackgroundColor="Black"
+                     CornerRadius="10"
+                     HeightRequest="75"
+                     Aspect="AspectFit"/>
+        <CollectionView Grid.Row="1"
+                        Grid.ColumnSpan="2" 
+                        BackgroundColor="Transparent"
+                        ItemsSource="{Binding Taskers}"
+                        SelectionMode="Single">
+            <CollectionView.ItemTemplate>
+                <DataTemplate x:DataType="model:Tasker">
+                    <Grid>
+                        <Frame Margin="5"
+                               HeightRequest="75">
+                            <Frame.GestureRecognizers>
+                                <TapGestureRecognizer CommandParameter="{Binding .}"
+                                                      Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:TaskersViewModel}}, Path=GoToDetailsCommand}"/>
+                            </Frame.GestureRecognizers>
+                            <Grid ColumnDefinitions="0.08*,0.6*,Auto"
+                                  ColumnSpacing="15">
+
+                                <Grid Grid.Column="0"
+                                      BackgroundColor="White">
+                                    <Grid.GestureRecognizers>
+                                        <TapGestureRecognizer Tapped="OnCheckChanged"/>
+                                    </Grid.GestureRecognizers>
+                                    <!-- Current implementationi does not work on the image source binding.-->
+                                    <Image Source="{Binding ImgSource}"/>
+                                    <CheckBox x:Name="checkBoxName" IsChecked="{Binding Checked}" IsVisible="False"/>
+                                </Grid>
+                                <Label Text="{Binding Name}" Grid.Column="1"
+                                                     VerticalOptions="Center" FontSize="Small"/>
+                                <Label Text="{Binding DisplayText}" Grid.Column="2"
+                                                     VerticalOptions="Center" 
+                                       HorizontalOptions="End" FontSize="Caption"/>
+                            </Grid>
+                        </Frame>
+                    </Grid>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+        <Grid Grid.Row="2"
+            ColumnDefinitions=".25*, .25*, .25*">
+            <Button Text="Interval"
+                    Command="{Binding FilterByIntervalCommand}"
+                    IsEnabled="{Binding IsNotBusy}"
+                    Grid.Row="1"
+                    Margin="8"/>
+            <Button Text="All"
+                    Command="{Binding FilterOffCommand}"
+                    IsEnabled="{Binding IsNotBusy}"
+                    Grid.Row="1"
+                    Grid.Column="1"
+                    Margin="8"/>
+            <Button Text="Date"
+                    Command="{Binding FilterByDateCommand}"
+                    IsEnabled="{Binding IsNotBusy}"
+                    Grid.Row="1"
+                    Grid.Column="2"
+                    Margin="8"/>
+
+            <ActivityIndicator IsVisible="{Binding IsBusy}" 
+                               IsRunning="{Binding IsBusy}" 
+                               HorizontalOptions="FillAndExpand"/>
+        </Grid>
+    </Grid>
+
+</ContentPage>

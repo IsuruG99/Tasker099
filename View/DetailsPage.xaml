@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Tasker099.DetailsPage"
+             xmlns:viewmodel="clr-namespace:Tasker099.ViewModel"
+             x:DataType="viewmodel:TaskerDetailsViewModel"
+             Shell.PresentationMode="ModalAnimated"
+             Title="{Binding Tasker.Name}">
+    <ScrollView>
+        <Grid Padding="10"
+              RowDefinitions="0.7*,0.3*"
+              VerticalOptions="CenterAndExpand"
+              MinimumHeightRequest="200"
+              MaximumHeightRequest="600">
+            <Grid ColumnDefinitions="0.3*,0.7*"
+                  ColumnSpacing="30">
+                <VerticalStackLayout Grid.ColumnSpan="2" BackgroundColor="Black"/>
+                <VerticalStackLayout HorizontalOptions="Center" VerticalOptions="Center" Spacing="4">
+                    <Label Text="Type:" FontSize="Small" Margin="5"/>
+                    <Label Text="Interval:" FontSize="Small" Margin="5" IsVisible="{Binding IsIntervalVisible}"/>
+                    <Label Text="Int. Reset:" FontSize="Small" Margin="5" IsVisible="{Binding IsIntervalResetVisible}"/>
+                    <Label Text="Res. Date:" FontSize="Small" Margin="5"  IsVisible="{Binding IsResetDayVisible}"/>
+                    <Label Text="Date:" FontSize="Small" Margin="5"  IsVisible="{Binding IsDatePickerVisible}"/>
+                </VerticalStackLayout>
+                <VerticalStackLayout Grid.Column="1" Padding="10">
+                    <Picker SelectedItem="{Binding EditableTasker.Type}" FontSize="Small" SelectedIndexChanged="OnTypeChanged">
+                        <Picker.Items>
+                            <x:String>interval</x:String>
+                            <x:String>date</x:String>
+                        </Picker.Items>
+                    </Picker>
+                    <Picker SelectedItem="{Binding EditableTasker.Interval}" FontSize="Small" IsVisible="{Binding IsIntervalVisible}">
+                        <Picker.Items>
+                            <x:String>None</x:String>
+                            <x:String>Daily</x:String>
+                            <x:String>Weekly</x:String>
+                            <x:String>Monthly</x:String>
+                            <x:String>SpecificDay</x:String>
+                        </Picker.Items>
+                    </Picker>
+                    <Picker SelectedItem="{Binding EditableTasker.IntervalReset}" FontSize="Small" IsVisible="{Binding IsIntervalResetVisible}">
+                        <Picker.Items>
+                            <x:String>None</x:String>
+                            <x:String>Monday</x:String>
+                            <x:String>Tuesday</x:String>
+                            <x:String>Wednesday</x:String>
+                            <x:String>Thursday</x:String>
+                            <x:String>Friday</x:String>
+                            <x:String>Saturday</x:String>
+                            <x:String>Sunday</x:String>
+                        </Picker.Items>
+                    </Picker>
+                    <Entry Placeholder="1st, 2nd etc." Text="{Binding EditableTasker.ResetDay}" FontSize="Small" IsVisible="{Binding IsResetDayVisible}"/>
+                    <DatePicker Date="{Binding EditableTasker.Date}" FontSize="Small" IsVisible="{Binding IsDatePickerVisible}" Format="yyyy-MM-dd"/>
+                </VerticalStackLayout>
+            </Grid>
+            <Grid Grid.Row="2" 
+                  Padding="10"
+                  ColumnDefinitions="0.33*,0.33*,0.33*"
+                  ColumnSpacing="20">
+                <Button Text="Submit"
+                        Command="{Binding SubmitCommand}"
+                        VerticalOptions="Center"/>
+                <Button Grid.Column="2"
+                        Text="Back"
+                        Command="{Binding CloseCommand}"
+                        VerticalOptions="Center"/>
+                <Button Grid.Column="1"
+                        Text="Delete"
+                        Command="{Binding DeleteCommand}"
+                        VerticalOptions="Center"/>
+            </Grid>
+        </Grid>
+    </ScrollView>
+</ContentPage>

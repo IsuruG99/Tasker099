@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Tasker099.AddPage"
+             xmlns:viewmodel="clr-namespace:Tasker099.ViewModel"
+             x:DataType="viewmodel:TaskerAddViewModel"
+             Shell.PresentationMode="ModalAnimated"
+             Title="Add Tasker">
+    <ScrollView>
+        <Grid Padding="10"
+              RowDefinitions="0.7*,0.3*"
+              VerticalOptions="CenterAndExpand"
+              MinimumHeightRequest="200"
+              MaximumHeightRequest="600">
+            <Grid ColumnDefinitions="0.3*,0.7*"
+                  ColumnSpacing="50">
+                <VerticalStackLayout Grid.ColumnSpan="2" BackgroundColor="Black"/>
+                <VerticalStackLayout HorizontalOptions="Center" VerticalOptions="Center" Spacing="4">
+                    <Label Text="Name:" FontSize="Small" Margin="5"/>
+                    <Label Text="Type:" FontSize="Small" Margin="5"/>
+                    <Label Text="Interval:" FontSize="Small" Margin="5" />
+                    <Label Text="Int. Reset:" FontSize="Small" Margin="5" />
+                    <Label Text="Res. Date:" FontSize="Small" Margin="5" />
+                    <Label Text="Date:" FontSize="Small" Margin="5" />
+                </VerticalStackLayout>
+                <VerticalStackLayout Grid.Column="1" Padding="10">
+                    <Entry Placeholder="Name" Text="{Binding Tasker.Name}" FontSize="Small" />
+                    <Picker SelectedItem="{Binding Tasker.Type}" FontSize="Small">
+                        <Picker.Items>
+                            <x:String>interval</x:String>
+                            <x:String>date</x:String>
+                        </Picker.Items>
+                    </Picker>
+                    <Picker SelectedItem="{Binding Tasker.Interval}" FontSize="Small" >
+                        <Picker.Items>
+                            <x:String>None</x:String>
+                            <x:String>Daily</x:String>
+                            <x:String>Weekly</x:String>
+                            <x:String>Monthly</x:String>
+                            <x:String>SpecificDay</x:String>
+                        </Picker.Items>
+                    </Picker>
+                    <Picker SelectedItem="{Binding Tasker.IntervalReset}" FontSize="Small" >
+                        <Picker.Items>
+                            <x:String>None</x:String>
+                            <x:String>Monday</x:String>
+                            <x:String>Tuesday</x:String>
+                            <x:String>Wednesday</x:String>
+                            <x:String>Thursday</x:String>
+                            <x:String>Friday</x:String>
+                            <x:String>Saturday</x:String>
+                            <x:String>Sunday</x:String>
+                        </Picker.Items>
+                    </Picker>
+                    <Entry Placeholder="1st, 2nd etc." Text="{Binding Tasker.ResetDay}" FontSize="Small" />
+                    <DatePicker Date="{Binding Tasker.Date}" FontSize="Small" Format="yyyy-MM-dd"/>
+                </VerticalStackLayout>
+            </Grid>
+            <Grid Grid.Row="2" 
+                  Padding="10"
+                  ColumnDefinitions="0.5*,0.5*"
+                  ColumnSpacing="20">
+                <Button Grid.Column="1"
+                        Text="Back"
+                        Command="{Binding CloseCommand}"
+                        VerticalOptions="Center"/>
+                <Button Grid.Column="0"
+                        Text="Add"
+                        Command="{Binding SaveCommand}"
+                        VerticalOptions="Center"/>
+            </Grid>
+        </Grid>
+    </ScrollView>
+</ContentPage>

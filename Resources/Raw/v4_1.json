@@ -1,0 +1,68 @@
+[
+  {
+    "Date": "1999-10-10",
+    "Interval": "Daily",
+    "IntervalReset": "None",
+    "Name": "NULL",
+    "ResetDay": "None",
+    "Type": "interval",
+    "Checked": false,
+    "CheckedTime": "None",
+    "ImgSource": "chk_50_off.png"
+  },
+  {
+    "Date": "1999-10-10",
+    "Interval": "Daily",
+    "IntervalReset": "None",
+    "Name": "WW",
+    "ResetDay": "None",
+    "Type": "interval",
+    "Checked": true,
+    "CheckedTime": "2024-11-26 10:30:00",
+    "ImgSource": "chk_50_on.png"
+  },
+  {
+    "Date": "2024-11-23",
+    "Interval": "None",
+    "IntervalReset": "None",
+    "Name": "Buy AB",
+    "ResetDay": "None",
+    "Type": "date",
+    "Checked": false,
+    "CheckedTime": "false",
+    "ImgSource": "chk_50_off.png"
+  },
+  {
+    "Date": "1999-10-10",
+    "Interval": "Weekly",
+    "IntervalReset": "Monday",
+    "Name": "SC Tower",
+    "ResetDay": "None",
+    "Type": "interval",
+    "Checked": false,
+    "CheckedTime": "None",
+    "ImgSource": "chk_50_off.png"
+  },
+  {
+    "Date": "1999-10-10",
+    "Interval": "Monthly",
+    "IntervalReset": "SpecificDay",
+    "Name": "GI Monthly",
+    "ResetDay": "1st",
+    "Type": "interval",
+    "Checked": false,
+    "CheckedTime": "None",
+    "ImgSource": "chk_50_off.png"
+  },
+  {
+    "Date": "1999-10-10",
+    "Interval": "Daily",
+    "IntervalReset": "None",
+    "Name": "Groceries",
+    "ResetDay": "None",
+    "Type": "interval",
+    "Checked": false,
+    "CheckedTime": "None",
+    "ImgSource": "chk_50_off.png"
+  }
+]
